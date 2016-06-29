@@ -1,0 +1,16 @@
+
+
+1 - Gerar vetor aleatorio      = ok
+2 - inserir em arv binaria      = ok
+3 - inserir em arv avl           = ok
+4 - usar ordenação             = ok
+5 - gerar chave aleatoria      = ok
+6 - buscas em:
+        a. sequencial        = ok
+        b. binaria              = ok
+        c. árvore binária     = ok
+        d. arvore avl           = ok
+
+7 - medir comparações       = ok
+
+8 - Fazer main              = ok

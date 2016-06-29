@@ -1,0 +1,7 @@
+Corrigir o bug, a ultima palavra esta sendo inserida duas vezes
+
+o bug é por causa de um ENTER depois da ultima palavra, a função fscanf(fp,"%s", palavra); tenta ler e nao consegue
+então é inserido um lixo de memoria no caso a ultima palavra que foi inserida 
+
+
+

@@ -1,0 +1,13 @@
+
+
+A) Bubble sort 				= ok
+B) Insertion sort (inserção simples)	= ok
+C) Selection sort (seleção direta)      = ok
+D) Heapsort                             = ok
+E) Mergesort                            = ok
+F )Quicksort                            = ok
+
+fazer o main e contar os tempos         = ok
+função verificar_ordem		        = ok
+
+finalizado  				= ok

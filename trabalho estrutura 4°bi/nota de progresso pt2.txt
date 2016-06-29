@@ -1,0 +1,4 @@
+Inserção de vértice (deve verificar se há espaço no vetor)                             				= ok
+Inserção de aresta (deve verificar se os vértices existem e não é permitido inserir  arestas repetidas)	= ok
+Remoção de aresta (deve verificar se os vértices e se a aresta existem) 				= implementar
+Impressão do grafo (deve-se imprimir os vértices e respectivas arestas) 				= ok

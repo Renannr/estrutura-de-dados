@@ -1,0 +1,11 @@
+-> implementar metodos tabela hash
+	- inserção 	= ok
+	- busca	 	= ok
+	- reespalhamento	= ok
+
+-> implementar metodos tabela hash dinamica 
+	- inserção 	= ok
+	- busca		= ok
+
+menu = ok
+main  = ok
