@@ -19,7 +19,7 @@ char end_atual[255];
 
 void menu() {
     if(end_atual != NULL){
-        printf("\n \t\t Endereco atual: %s \n", end_atual); 
+        printf("\n\n \t\t Endereco atual: %s \n", end_atual); 
     }
     printf("\n#####################################################");
     printf("\n#                      MENU                         #");
@@ -37,7 +37,7 @@ void menu() {
     printf("\n#                                                   #");
     printf("\n#                                                   #");
     printf("\n#####################################################");
-    printf("\n\n");
+    printf("\n");
 }
 
 // 1
@@ -120,7 +120,7 @@ void avancar() {
     Endereco *aux_1, *aux_2, *end_anteriores_aux;
 
     if(end_futuros->proximo == NULL){
-        printf("Nao existem mais enderecos futuros");
+        printf("Nao existem mais enderecos futuros \n");
         menu();
         return;
     }
@@ -132,12 +132,12 @@ void avancar() {
 	if(end_anteriores->proximo == NULL) {
 		end_anteriores->proximo = aux_1;
 	}else {
-		end_anteriores = end_anteriores->proximo;
+		end_anteriores_aux = end_anteriores->proximo;
 
-        while(end_anteriores->proximo != NULL){
-            end_anteriores = end_anteriores->proximo;
+        while(end_anteriores_aux->proximo != NULL){
+            end_anteriores_aux = end_anteriores_aux->proximo;
         }
-        end_anteriores->proximo = aux_1;
+        end_anteriores_aux->proximo = aux_1;
 	}
 	
 	aux_2 = end_futuros->proximo;
@@ -165,21 +165,21 @@ void avancar() {
     }
     end_futuros_tam--;
 
-    printf(" Situacao: \n");        
+    printf("\n Situacao:");        
     Endereco *print_end_ant = end_anteriores->proximo;
     Endereco *print_end_fut = end_futuros->proximo;
 
-    printf("\n ---End. Anteriores-------- \n");
+    printf("\n ---End. Anteriores: ");
     while(print_end_ant != NULL){
-        printf("%s\n",print_end_ant->endereco);
+        printf("> %s ",print_end_ant->endereco);
         print_end_ant = print_end_ant->proximo;
     }
-    printf("\n ---End. Futuros------- \n");
+    printf("\n ---Atual ----- : [%s] ",end_atual);
+    printf("\n ---End. Futuros: ");
     while(print_end_fut != NULL){
-        printf("%s\n",print_end_fut->endereco);
+        printf("< %s ",print_end_fut->endereco);
         print_end_fut = print_end_fut->proximo;
     }
-    printf("Atual : %s\n",end_atual);
     
     menu();
 }
@@ -196,7 +196,7 @@ void voltar() {
     Endereco *aux_1, *aux_2, *end_futuro_aux;
 
     if(end_anteriores->proximo == NULL){
-        printf("Nao existem mais enderecos anteriores");
+        printf("Nao existem mais enderecos anteriores \n");
         menu();
         return;
     }
@@ -241,22 +241,21 @@ void voltar() {
     }
     end_anteriores_tam--;
     
-    printf(" Situacao: \n");        
+    printf("\n Situacao:");        
     Endereco *print_end_ant = end_anteriores->proximo;
     Endereco *print_end_fut = end_futuros->proximo;
 
-    printf("\n ---End. Anteriores-------- \n");
+    printf("\n ---End. Anteriores: ");
     while(print_end_ant != NULL){
-        printf("%s\n",print_end_ant->endereco);
+        printf("> %s ",print_end_ant->endereco);
         print_end_ant = print_end_ant->proximo;
     }
-    printf("\n ---End. Futuros------- \n");
+    printf("\n ---Atual ----- : [%s] ",end_atual);
+    printf("\n ---End. Futuros: ");
     while(print_end_fut != NULL){
-        printf("%s\n",print_end_fut->endereco);
+        printf("< %s ",print_end_fut->endereco);
         print_end_fut = print_end_fut->proximo;
     }
-    printf("Atual : %s\n",end_atual);
-    
     
     menu();
 }
@@ -290,41 +289,41 @@ int main() {
                 system("cls");
                 printf("\n Para qual endereco deseja ir? ");
                 informar_endereco();
-                printf("\n\nEscolha outra opcao para continuar...\n\n");
+                printf("\n Escolha outra opcao para continuar...\n");
                 break;
             case 2:
                 system ("cls");
                 voltar();
-                printf("\n\nEscolha outra opcao para continuar...\n\n");
+                printf("\n Escolha outra opcao para continuar...\n");
                 break;
             case 3:
                 system ("cls");
                 printf("\n Quantos enderecos quer voltar? ");
                 num = getche()-'0';
                 voltar_n_enderecos(num);
-                printf("\n\nEscolha outra opcao para continuar...\n\n");
+                printf("\n Escolha outra opcao para continuar...\n");
                 break;
             case 4:
                 system ("cls");
                 mostrar_historico();
-                printf("\n\nEscolha outra opcao para continuar...\n\n");
+                printf("\n Escolha outra opcao para continuar...\n");
                 break;
             case 5:
                 system ("cls");
                 avancar();  
-                printf("\n\nEscolha outra opcao para continuar...\n\n");
+                printf("\n Escolha outra opcao para continuar...\n");
                 break;
             case 6:
                 system ("cls");
                 printf("\n Quantos enderecos quer avancar? ");
                 num = getche()-'0';
                 avancar_n_enderecos(num);       
-                printf("\n\nEscolha outra opcao para continuar...\n\n");
+                printf("\n Escolha outra opcao para continuar...\n");
                 break;
             case 7:
                 system ("cls");
                 mostrar_futuros();               
-                printf("\n\nEscolha outra opcao para continuar...\n\n");
+                printf("\n Escolha outra opcao para continuar...\n");
                 break;
             case 8:
                 system ("cls");
@@ -337,4 +336,3 @@ int main() {
     
     system("pause");
 }
-
