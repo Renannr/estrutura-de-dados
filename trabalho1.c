@@ -39,6 +39,7 @@ void menu() {
     printf("\n\n");
 }
 
+// 1
 void informar_endereco() {
     char endereco[255];
     Endereco *aux, *novo_end;
@@ -75,6 +76,7 @@ void informar_endereco() {
     menu();
 }
 
+// 4
 void mostrar_historico() {
     int opcao, tam = 1;
     Endereco *aux;
@@ -93,6 +95,7 @@ void mostrar_historico() {
     menu();
 }
 
+// 7
 void mostrar_futuros() {
     int opcao, tam = 1;
     Endereco *aux;
@@ -111,6 +114,7 @@ void mostrar_futuros() {
     menu();
 }
 
+// 5
 void avancar() {
     Endereco *aux_1, *aux_2, *end_futuro_aux;
 
@@ -123,17 +127,18 @@ void avancar() {
     strcpy(aux_1->endereco, end_atual);
     aux_1->proximo = NULL;
 
-
-
-    
     
     menu();
 }
 
-void avancar_n_enderecos(int num){
-    printf("avançar N enderecos");
+// 6
+void avancar_n_enderecos(int num) {
+	system("cls");
+    printf("\n avançar %d enderecos ", num);
+    menu();
 }
 
+// 2
 void voltar() {
     Endereco *aux_1, *aux_2, *end_futuro_aux;
 
@@ -180,6 +185,7 @@ void voltar() {
             aux_2 = aux_2->proximo;
         }
     }
+    end_anteriores_tam--;
     
     printf(" Situacao: \n");        
     Endereco *print_end_ant = end_anteriores->proximo;
@@ -201,12 +207,17 @@ void voltar() {
     menu();
 }
 
+// 3
 void voltar_n_enderecos(int num){
-    printf("voltar N enderecos");
+   	system("cls");
+    printf("\n voltar %d enderecos ", num);
+    menu();
 }
+
 
 int main() {
     int opcao;
+    int num;
     bool i;
     i = true;
     
@@ -234,9 +245,9 @@ int main() {
                 break;
             case 3:
                 system ("cls");
-                menu();
-                printf("\nDigite o valor a ser buscado ");
-               
+                printf("\n Quantos enderecos quer voltar? ");
+                num = getche()-'0';
+                voltar_n_enderecos(num);
                 printf("\n\nEscolha outra opcao para continuar...\n\n");
                 break;
             case 4:
@@ -246,23 +257,19 @@ int main() {
                 break;
             case 5:
                 system ("cls");
-                avancar();
-                printf("\nDigite o valor a ser buscado ");
-               
+                avancar();  
                 printf("\n\nEscolha outra opcao para continuar...\n\n");
                 break;
             case 6:
                 system ("cls");
-                menu();
-                printf("\nDigite o valor a ser buscado ");
-               
+                printf("\n Quantos enderecos quer avancar? ");
+                num = getche()-'0';
+                avancar_n_enderecos(num);       
                 printf("\n\nEscolha outra opcao para continuar...\n\n");
                 break;
             case 7:
                 system ("cls");
-                mostrar_futuros();
-                printf("\nDigite o valor a ser buscado ");
-               
+                mostrar_futuros();               
                 printf("\n\nEscolha outra opcao para continuar...\n\n");
                 break;
             case 8:
