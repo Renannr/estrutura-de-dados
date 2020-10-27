@@ -19,7 +19,7 @@ char end_atual[255];
 
 void menu() {
     if(end_atual != NULL){
-        printf("\n\n \t\t Endereco atual: %s \n", end_atual); 
+        printf("\n\n\tEndereco atual: %s \n", end_atual); 
     }
     printf("\n\t#####################################################");
     printf("\n\t#                      MENU                         #");
