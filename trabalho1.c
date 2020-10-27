@@ -117,7 +117,7 @@ void mostrar_futuros() {
 
 // 5
 void avancar() {
-    Endereco *aux_1, *aux_2, *end_futuro_aux;
+    Endereco *aux_1, *aux_2, *end_anteriores_aux;
 
     if(end_futuros->proximo == NULL){
         printf("Nao existem mais enderecos futuros");
@@ -128,7 +128,58 @@ void avancar() {
     aux_1 = malloc(sizeof (Endereco));
     strcpy(aux_1->endereco, end_atual);
     aux_1->proximo = NULL;
+	
+	if(end_anteriores->proximo == NULL) {
+		end_anteriores->proximo = aux_1;
+	}else {
+		end_anteriores = end_anteriores->proximo;
 
+        while(end_anteriores->proximo != NULL){
+            end_anteriores = end_anteriores->proximo;
+        }
+        end_anteriores->proximo = aux_1;
+	}
+	
+	aux_2 = end_futuros->proximo;
+	
+	while(aux_2->proximo != NULL) {
+        aux_2 = aux_2->proximo;
+    }
+    
+    strcpy(end_atual, aux_2->endereco);
+    
+    aux_2 = end_futuros->proximo;
+
+    if(strcmpi(aux_2->endereco, end_atual) == 0){
+        end_futuros->proximo = NULL;
+    }else {
+        while(aux_2->proximo != NULL) {
+            Endereco *end;
+            end = aux_2->proximo;
+            if( strcmpi(end->endereco, end_atual) == 0 ){
+                aux_2->proximo = NULL;
+                break;
+            }
+            aux_2 = aux_2->proximo;
+        }
+    }
+    end_futuros_tam--;
+
+    printf(" Situacao: \n");        
+    Endereco *print_end_ant = end_anteriores->proximo;
+    Endereco *print_end_fut = end_futuros->proximo;
+
+    printf("\n ---End. Anteriores-------- \n");
+    while(print_end_ant != NULL){
+        printf("%s\n",print_end_ant->endereco);
+        print_end_ant = print_end_ant->proximo;
+    }
+    printf("\n ---End. Futuros------- \n");
+    while(print_end_fut != NULL){
+        printf("%s\n",print_end_fut->endereco);
+        print_end_fut = print_end_fut->proximo;
+    }
+    printf("Atual : %s\n",end_atual);
     
     menu();
 }
