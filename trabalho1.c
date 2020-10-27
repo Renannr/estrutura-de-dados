@@ -10,14 +10,17 @@ typedef struct endereco {
 } Endereco;
 
 Endereco *end_anteriores;
-int end_anteriores_tam;
+int end_anteriores_tam = 0;
+
 Endereco *end_futuros;
+int end_futuros_tam = 0;
+
 char end_atual[255];
 
 void menu() {
-	if(end_atual != NULL){
-		printf("\n \t\t Endereco atual: %s \n", end_atual);	
-	}
+    if(end_atual != NULL){
+        printf("\n \t\t Endereco atual: %s \n", end_atual); 
+    }
     printf("\n###################################################");
     printf("\n#                      MENU                       #");
     printf("\n#                                                 #");
@@ -37,71 +40,115 @@ void menu() {
 }
 
 void informar_endereco() {
-	char endereco[255];
-	Endereco *aux, *novo_end;
-	int tam = 0;
-	
-	gets(endereco);
-		
-	if(strcmpi(end_atual, "") == 0) {
-		strcpy(end_atual, endereco);
-	} 
-	else {
-		novo_end = malloc(sizeof (Endereco));
-		novo_end->proximo = NULL;
-		strcpy(novo_end->endereco, end_atual);
-		
-		if(end_anteriores->proximo == NULL) {
-			end_anteriores->proximo = novo_end;
-		}else {
-			aux = end_anteriores->proximo;
-		
-			while(aux->proximo != NULL) {
-				aux = aux->proximo;
-				tam++;
-			}
-			
-			aux->proximo = novo_end;
-		}
-		strcpy(end_atual, endereco);
-		end_anteriores_tam++;
-	}
-	system("cls");
-	menu();
+    char endereco[255];
+    Endereco *aux, *novo_end;
+    int tam = 0;
+    
+    gets(endereco);
+    
+    end_futuros->proximo = NULL;
+        
+    if(strcmpi(end_atual, "") == 0) {
+        strcpy(end_atual, endereco);
+    } 
+    else {
+        novo_end = malloc(sizeof (Endereco));
+        novo_end->proximo = NULL;
+        strcpy(novo_end->endereco, end_atual);
+        
+        if(end_anteriores->proximo == NULL) {
+            end_anteriores->proximo = novo_end;
+        }else {
+            aux = end_anteriores->proximo;
+        
+            while(aux->proximo != NULL) {
+                aux = aux->proximo;
+                tam++;
+            }
+            
+            aux->proximo = novo_end;
+        }
+        strcpy(end_atual, endereco);
+        end_anteriores_tam++;
+    }
+    system("cls");
+    menu();
 }
 
 void mostrar_historico() {
-	int opcao, tam = 1;
-	Endereco *aux;
-	
-	system("cls");
+    int opcao, tam = 1;
+    Endereco *aux;
+    
+    system("cls");
 
-	aux = end_anteriores->proximo;
-	printf("\n Historico de enderecos visitados: \n");
-	
-	while(aux != NULL) {
-		printf("\n\t\t n%d> %s", tam, aux->endereco);
-		aux = aux->proximo;
-		tam++;
-	}
-	
-	menu();
+    aux = end_anteriores->proximo;
+    printf("\n Historico de enderecos visitados: \n");
+    
+    while(aux != NULL) {
+        printf("\n\t\t n%d> %s", tam, aux->endereco);
+        aux = aux->proximo;
+        tam++;
+    }
+    
+    menu();
 }
 
 void avancar() {
-	printf("avançar");
+    printf("avançar");
 }
 
 void avancar_n_enderecos(int num){
-	printf("avançar N enderecos");
+    printf("avançar N enderecos");
 }
 
-void voltar(){
-	printf("voltar");
+void voltar() {
+    Endereco *aux_1, *aux_2, *end_futuro_aux;
+
+    aux_1 = malloc(sizeof (Endereco));
+    strcpy(aux_1->endereco, end_atual);
+    aux_1->proximo = NULL;  
+
+    if(end_futuros->proximo == NULL) {  
+        end_futuros->proximo = aux_1;
+    }else {
+        end_futuro_aux = end_futuros->proximo;
+
+        while(end_futuro_aux->proximo != NULL){
+            end_futuro_aux = end_futuro_aux->proximo;
+        }
+        end_futuro_aux->proximo = aux_1;
+    }
+    
+    aux_2 = end_anteriores->proximo;
+
+    while(aux_2->proximo != NULL) {
+        aux_2 = aux_2->proximo;
+    }
+
+    strcpy(end_atual, aux_2->endereco);
+    
+    /*
+    printf(" Situacao: \n");        
+    Endereco *print_end_ant = end_anteriores->proximo;
+    Endereco *print_end_fut = end_futuros->proximo;
+
+    while(print_end_ant != NULL){
+        printf("%s\n",print_end_ant->endereco);
+        print_end_ant = print_end_ant->proximo;
+    }
+    printf("\n ----------- \n");
+    while(print_end_fut != NULL){
+        printf("%s\n",print_end_fut->endereco);
+        print_end_fut = print_end_fut->proximo;
+    }
+    printf("Atual : %s\n",end_atual);
+    */
+    
+    menu();
 }
 
 void voltar_n_enderecos(int num){
-	printf("voltar N enderecos");
+    printf("voltar N enderecos");
 }
 
 int main() {
@@ -111,6 +158,9 @@ int main() {
     
     end_anteriores = malloc(sizeof (Endereco));
     end_anteriores->proximo = NULL;
+
+    end_futuros = malloc(sizeof (Endereco));
+    end_futuros->proximo = NULL;
     
     menu();
     
@@ -120,12 +170,12 @@ int main() {
             case 1:
                 system("cls");
                 printf("\n Para qual endereco deseja ir? ");
-            	informar_endereco();
+                informar_endereco();
                 printf("\n\nEscolha outra opcao para continuar...\n\n");
                 break;
             case 2:
                 system ("cls");
-                menu();
+                voltar();
                 printf("\n Digite o valor a ser buscado ");
                
                 printf("\n\nEscolha outra opcao para continuar...\n\n");
@@ -171,6 +221,7 @@ int main() {
         }
     }
     while(i == true);
-	
+    
     system("pause");
 }
+
