@@ -82,7 +82,25 @@ void mostrar_historico() {
     system("cls");
 
     aux = end_anteriores->proximo;
-    printf("\n Historico de enderecos visitados: \n");
+    printf("\n Historico de enderecos visitados antes do atual: %s \n", end_atual);
+    
+    while(aux != NULL) {
+        printf("\n\t\t n%d> %s", tam, aux->endereco);
+        aux = aux->proximo;
+        tam++;
+    }
+    
+    menu();
+}
+
+void mostrar_futuros() {
+    int opcao, tam = 1;
+    Endereco *aux;
+    
+    system("cls");
+
+    aux = end_futuros->proximo;
+    printf("\n Historico de enderecos visitados apos o atual: %s \n", end_atual);
     
     while(aux != NULL) {
         printf("\n\t\t n%d> %s", tam, aux->endereco);
@@ -94,7 +112,22 @@ void mostrar_historico() {
 }
 
 void avancar() {
-    printf("avançar");
+    Endereco *aux_1, *aux_2, *end_futuro_aux;
+
+    if(end_futuros->proximo == NULL){
+        printf("Nao existem mais enderecos futuros");
+        return;
+    }
+
+    aux_1 = malloc(sizeof (Endereco));
+    strcpy(aux_1->endereco, end_atual);
+    aux_1->proximo = NULL;
+
+
+
+    
+    
+    menu();
 }
 
 void avancar_n_enderecos(int num){
@@ -103,6 +136,11 @@ void avancar_n_enderecos(int num){
 
 void voltar() {
     Endereco *aux_1, *aux_2, *end_futuro_aux;
+
+    if(end_anteriores->proximo == NULL){
+        printf("Nao existem mais enderecos anteriores");
+        return;
+    }
 
     aux_1 = malloc(sizeof (Endereco));
     strcpy(aux_1->endereco, end_atual);
@@ -126,23 +164,39 @@ void voltar() {
     }
 
     strcpy(end_atual, aux_2->endereco);
+
+    aux_2 = end_anteriores->proximo;
+
+    if(strcmpi(aux_2->endereco, end_atual) == 0){
+        end_anteriores->proximo = NULL;
+    }else {
+        while(aux_2->proximo != NULL) {
+            Endereco *end;
+            end = aux_2->proximo;
+            if( strcmpi(end->endereco, end_atual) == 0 ){
+                aux_2->proximo = NULL;
+                break;
+            }
+            aux_2 = aux_2->proximo;
+        }
+    }
     
-    /*
     printf(" Situacao: \n");        
     Endereco *print_end_ant = end_anteriores->proximo;
     Endereco *print_end_fut = end_futuros->proximo;
 
+    printf("\n ---End. Anteriores-------- \n");
     while(print_end_ant != NULL){
         printf("%s\n",print_end_ant->endereco);
         print_end_ant = print_end_ant->proximo;
     }
-    printf("\n ----------- \n");
+    printf("\n ---End. Futuros------- \n");
     while(print_end_fut != NULL){
         printf("%s\n",print_end_fut->endereco);
         print_end_fut = print_end_fut->proximo;
     }
     printf("Atual : %s\n",end_atual);
-    */
+    
     
     menu();
 }
@@ -176,8 +230,6 @@ int main() {
             case 2:
                 system ("cls");
                 voltar();
-                printf("\n Digite o valor a ser buscado ");
-               
                 printf("\n\nEscolha outra opcao para continuar...\n\n");
                 break;
             case 3:
@@ -194,7 +246,7 @@ int main() {
                 break;
             case 5:
                 system ("cls");
-                menu();
+                avancar();
                 printf("\nDigite o valor a ser buscado ");
                
                 printf("\n\nEscolha outra opcao para continuar...\n\n");
@@ -208,7 +260,7 @@ int main() {
                 break;
             case 7:
                 system ("cls");
-                menu();
+                mostrar_futuros();
                 printf("\nDigite o valor a ser buscado ");
                
                 printf("\n\nEscolha outra opcao para continuar...\n\n");
