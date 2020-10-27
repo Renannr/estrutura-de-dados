@@ -21,22 +21,22 @@ void menu() {
     if(end_atual != NULL){
         printf("\n\n \t\t Endereco atual: %s \n", end_atual); 
     }
-    printf("\n#####################################################");
-    printf("\n#                      MENU                         #");
-    printf("\n#                                                   #");
-    printf("\n#             Digite a opcao desejada               #");
-    printf("\n#                                                   #");
-    printf("\n#  1. Informar um novo endereco;                    #");
-    printf("\n#  2. Voltar ao endereco anterior;                  #");
-    printf("\n#  3. Voltar N enderecos;                           #");
-    printf("\n#  4. Mostrar enderecos que foram visitados antes;  #");
-    printf("\n#  5. Avancar para o proximo endereco;              #");
-    printf("\n#  6. Avancar N enderecos;                          #");
-    printf("\n#  7. Mostrar enderecos que foram visitados apos;   #");
-    printf("\n#  8. Sair do programa.                             #");
-    printf("\n#                                                   #");
-    printf("\n#                                                   #");
-    printf("\n#####################################################");
+    printf("\n\t#####################################################");
+    printf("\n\t#                      MENU                         #");
+    printf("\n\t#                                                   #");
+    printf("\n\t#             Digite a opcao desejada               #");
+    printf("\n\t#                                                   #");
+    printf("\n\t#  1. Informar um novo endereco;                    #");
+    printf("\n\t#  2. Voltar ao endereco anterior;                  #");
+    printf("\n\t#  3. Voltar N enderecos;                           #");
+    printf("\n\t#  4. Mostrar enderecos que foram visitados antes;  #");
+    printf("\n\t#  5. Avancar para o proximo endereco;              #");
+    printf("\n\t#  6. Avancar N enderecos;                          #");
+    printf("\n\t#  7. Mostrar enderecos que foram visitados apos;   #");
+    printf("\n\t#  8. Sair do programa.                             #");
+    printf("\n\t#                                                   #");
+    printf("\n\t#                                                   #");
+    printf("\n\t#####################################################");
     printf("\n");
 }
 
@@ -46,6 +46,7 @@ void informar_endereco() {
     Endereco *aux, *novo_end;
     int tam = 0;
     
+    printf("\n Para qual endereco deseja ir? ");
     gets(endereco);
     
     end_futuros->proximo = NULL;
@@ -280,14 +281,13 @@ int main() {
     end_futuros = malloc(sizeof (Endereco));
     end_futuros->proximo = NULL;
     
-    menu();
+    informar_endereco();
     
     do {
         opcao = getche()-'0';
         switch(opcao) {
             case 1:
                 system("cls");
-                printf("\n Para qual endereco deseja ir? ");
                 informar_endereco();
                 printf("\n Escolha outra opcao para continuar...\n");
                 break;
@@ -336,3 +336,4 @@ int main() {
     
     system("pause");
 }
+
