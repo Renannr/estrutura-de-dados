@@ -187,8 +187,12 @@ void avancar() {
 
 // 6
 void avancar_n_enderecos(int num) {
-	system("cls");
-    printf("\n avançar %d enderecos ", num);
+
+    printf("\n avancando %d enderecos ", num);
+
+    for(i=1;i<=num;i++){
+        avancar();
+    }
     menu();
 }
 
@@ -263,8 +267,12 @@ void voltar() {
 
 // 3
 void voltar_n_enderecos(int num){
-   	system("cls");
-    printf("\n voltar %d enderecos ", num);
+   	
+    printf("\n voltando %d enderecos ", num);
+
+    for(i=1;i<=num;i++){
+        voltar();
+    }
     menu();
 }
 
@@ -300,7 +308,11 @@ int main() {
                 system ("cls");
                 printf("\n Quantos enderecos quer voltar? ");
                 num = getche()-'0';
-                voltar_n_enderecos(num);
+                if(num > end_anteriores_tam) {
+                    printf("Valor invalido\n");
+                }else {
+                    voltar_n_enderecos(num);
+                }
                 printf("\n Escolha outra opcao para continuar...\n");
                 break;
             case 4:
@@ -317,7 +329,11 @@ int main() {
                 system ("cls");
                 printf("\n Quantos enderecos quer avancar? ");
                 num = getche()-'0';
-                avancar_n_enderecos(num);       
+                if(num > end_futuros_tam) {
+                    printf("Valor invalido\n");
+                }else {
+                    avancar_n_enderecos(num);       
+                }
                 printf("\n Escolha outra opcao para continuar...\n");
                 break;
             case 7:
@@ -336,4 +352,3 @@ int main() {
     
     system("pause");
 }
-
