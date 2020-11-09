@@ -165,6 +165,7 @@ void avancar() {
         }
     }
     end_futuros_tam--;
+    end_anteriores_tam++;
 
     printf("\n Situacao:");        
     Endereco *print_end_ant = end_anteriores->proximo;
@@ -187,11 +188,12 @@ void avancar() {
 
 // 6
 void avancar_n_enderecos(int num) {
-
+	int i;
     printf("\n avancando %d enderecos ", num);
 
     for(i=1;i<=num;i++){
         avancar();
+        system("cls");
     }
     menu();
 }
@@ -245,6 +247,7 @@ void voltar() {
         }
     }
     end_anteriores_tam--;
+    end_futuros_tam++;
     
     printf("\n Situacao:");        
     Endereco *print_end_ant = end_anteriores->proximo;
@@ -267,11 +270,12 @@ void voltar() {
 
 // 3
 void voltar_n_enderecos(int num){
-   	
+   	int i;
     printf("\n voltando %d enderecos ", num);
 
     for(i=1;i<=num;i++){
         voltar();
+        system("cls");
     }
     menu();
 }
@@ -309,7 +313,8 @@ int main() {
                 printf("\n Quantos enderecos quer voltar? ");
                 num = getche()-'0';
                 if(num > end_anteriores_tam) {
-                    printf("Valor invalido\n");
+                    printf("\n Valor invalido \n");
+                    menu();
                 }else {
                     voltar_n_enderecos(num);
                 }
@@ -330,7 +335,8 @@ int main() {
                 printf("\n Quantos enderecos quer avancar? ");
                 num = getche()-'0';
                 if(num > end_futuros_tam) {
-                    printf("Valor invalido\n");
+                    printf("\n Valor invalido \n");
+                    menu();
                 }else {
                     avancar_n_enderecos(num);       
                 }
